@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+  <script src="/js/chartUtils.js"></script>
+  <style>
+    #studentInfo {
+      text-align: center;
+      margin: 20px;
+      font-size: 18px;
+    }
+    .actionButton {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    #chartContainer {
+      width: 50%;
+      margin: 20px auto;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<h1 style="text-align: center;">Student Dashboard</h1>
+
+<div id="studentInfo">
+  <p><strong>ID:</strong> 1</p>
+  <p><strong>Name:</strong> Emma Thompson</p>
+  <p><strong>Email:</strong> emma.thompson@example.com</p>
+</div>
+
+<button id="showTimeSpentChartButton" class="actionButton">Show Time Spent On Modules Chart</button>
+<button id="showResultsDistributionButton" class="actionButton">Show Results Distribution</button>
+
+<div id="chartContainer">
+  <h2 style="text-align: center;" id="chartTitle">Chart</h2>
+  <canvas id="chartCanvas"></canvas>
+</div>
+
+<script>
+  document.getElementById('showTimeSpentChartButton').addEventListener('click', function() {
+    document.getElementById('chartContainer').style.display = 'block';
+    document.getElementById('chartTitle').innerText = 'Time Spent on Modules by Student';
+    fetchTimeSpentData(1);
+  });
+
+  document.getElementById('showResultsDistributionButton').addEventListener('click', function() {
+    document.getElementById('chartContainer').style.display = 'block';
+    document.getElementById('chartTitle').innerText = 'Results Distribution';
+    fetchResultsDistribution(1);
+  });
+</script>
+</body>
+</html>
