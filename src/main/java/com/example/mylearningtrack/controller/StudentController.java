@@ -25,4 +25,9 @@ public class StudentController {
                 .map(record-> Map.of("moduleCode", record[0], "timeSpent", record[1]))
                 .collect(Collectors.toList());
     }
+
+    @GetMapping("students/{studentId}/resultsDistribution")
+    public Map<String,Double> getResultsDistribution (@PathVariable Long studentId){
+        return studentService.getResultCountByStudent(studentId);
+    }
 }
