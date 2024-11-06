@@ -14,4 +14,7 @@ public interface StudentModuleProgressRepository extends JpaRepository<StudentMo
     @Query("SELECT m.module.code, m.timeSpent FROM StudentModuleProgress m WHERE m.student.id = :studentId")
     List<Object[]> findTimeSpentByStudent(@Param("studentId") Long studentId);
 
+    @Query("SELECT m.result, count(m) FROM StudentModuleProgress m WHERE m.student.id = :studentId Group BY m.result")
+    List<Object[]> findResultCountByStudent(@Param("studentId") Long studentId);
+
 }
