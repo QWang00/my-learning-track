@@ -33,11 +33,11 @@ public class Course {
     @Column
     private int credits;
 
-    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonBackReference
     private List<Module> modules;
 
-    @ManyToMany(mappedBy = "courses", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "courses", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JsonBackReference
     private List<Student> students;
 
