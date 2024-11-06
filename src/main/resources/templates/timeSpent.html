@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Time Spent</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<h2>Time Spent on Modules by Student</h2>
+<canvas id="timeSpentChart"></canvas>
+
+<script>
+    async function fetchTimeSpentData(studentId) {
+        const response = await fetch(`/api/v1/students/${studentId}/timeSpent`);
+        const data = await response.json();
+
+        const labels = data.map(item => item.moduleCode);
+        const timeSpentValues = data.map(item => item.timeSpent);
+
+        new Chart(document.getElementById('timeSpentChart'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Time Spent (minutes)',
+                    data: timeSpentValues,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Time Spent (minutes)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Module Code'
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    fetchTimeSpentData(1);
+</script>
+</body>
+</html>
