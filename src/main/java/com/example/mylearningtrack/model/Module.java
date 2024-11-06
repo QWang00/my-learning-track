@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -31,5 +33,8 @@ public class Module {
     @JoinColumn(name = "course_id", nullable = false)
     @JsonManagedReference
     private Course course;
+
+    @OneToMany(mappedBy = "module", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<StudentModuleProgress> studentModuleProgressList;
 
 }
