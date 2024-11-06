@@ -93,6 +93,7 @@ public class DataLoader {
             moduleRepository.saveAll(Arrays.asList(module1, module2, module3, module4, module5, module6, module7, module8));
 
             Student student = Student.builder()
+                    .id(1L)
                     .name("Emma Thompson")
                     .email("emma.thompson@example.com")
                     .build();
