@@ -1,3 +1,9 @@
+let chartInstance;
+function resetChart() {
+    if (chartInstance) {
+        chartInstance.destroy();
+    }
+}
 
 async function fetchTimeSpentData(studentId) {
     const response = await fetch(`/api/v1/students/${studentId}/timeSpent`);
@@ -6,7 +12,8 @@ async function fetchTimeSpentData(studentId) {
     const moduleCodes = data.map(item => item.moduleCode);
     const timeSpentValues = data.map(item => item.timeSpent);
 
-    new Chart(document.getElementById('timeSpentChart'), {
+    resetChart();
+    chartInstance = new Chart(document.getElementById('chartCanvas'), {
         type: 'bar',
         data: {
             labels: moduleCodes,
